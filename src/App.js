@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material';
+import theme from './utils/theme';
+
+// Admin Routes
+import AdminDashboard from './pages/admin/Dashboard';
+import UserManagement from './pages/admin/UserManagement';
+import CourseManagement from './pages/admin/CourseManagement';
+
+// Student Routes
+import StudentDashboard from './pages/student/Dashboard';
+import CourseView from './pages/student/CourseView';
+import Profile from './pages/student/Profile';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Routes>
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/courses" element={<CourseManagement />} />
+
+          {/* Student Routes */}
+          <Route path="/dashboard" element={<StudentDashboard />} />
+          <Route path="/course/:id" element={<CourseView />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
-export default App;
+export default A
